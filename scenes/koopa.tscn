@@ -1,10 +1,10 @@
 [gd_scene load_steps=28 format=3 uid="uid://c2l46wkmkylha"]
 
-[ext_resource type="Texture2D" uid="uid://t0aqpqec04x4" path="res://Assets/yoshiIsland/enemys/koopa/walk-kicked/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="1_py2lt"]
-[ext_resource type="Texture2D" uid="uid://dw4gc1dx3akb3" path="res://Assets/yoshiIsland/enemys/koopa/walk/SNES - Super Mario World - Koopas & Masked Koopas2.png" id="1_tyfma"]
-[ext_resource type="Texture2D" uid="uid://b5co27lh1q03n" path="res://Assets/yoshiIsland/enemys/koopa/turn/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="1_v04mq"]
+[ext_resource type="Texture2D" uid="uid://t0aqpqec04x4" path="res://assets/enemys/koopa/walk-kicked/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="1_py2lt"]
+[ext_resource type="Texture2D" uid="uid://dw4gc1dx3akb3" path="res://assets/enemys/koopa/walk/SNES - Super Mario World - Koopas & Masked Koopas2.png" id="1_tyfma"]
+[ext_resource type="Texture2D" uid="uid://b5co27lh1q03n" path="res://assets/enemys/koopa/turn/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="1_v04mq"]
 [ext_resource type="Script" uid="uid://deq6vr0e3nsf4" path="res://scripts/Enemys/Koopa/Koopa.cs" id="1_vo5xu"]
-[ext_resource type="Texture2D" uid="uid://bo5iwd32ubdag" path="res://Assets/yoshiIsland/enemys/koopa/walk/SNES - Super Mario World - Koopas & Masked Koopas1.png" id="4_xum81"]
+[ext_resource type="Texture2D" uid="uid://bo5iwd32ubdag" path="res://assets/enemys/koopa/walk/SNES - Super Mario World - Koopas & Masked Koopas1.png" id="4_xum81"]
 [ext_resource type="Script" uid="uid://ccm0vbsu0k4q" path="res://scripts/States/StateMachine.cs" id="5_grttc"]
 [ext_resource type="Script" uid="uid://bl3voi00l75b6" path="res://scripts/Enemys/Koopa/states/KoopaWalk.cs" id="6_grttc"]
 

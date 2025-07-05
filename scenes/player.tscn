@@ -1,9 +1,9 @@
 [gd_scene load_steps=36 format=3 uid="uid://qv0rwaaiawql"]
 
 [ext_resource type="Script" uid="uid://cybuwmbcegwkb" path="res://scripts/Player/Player.cs" id="1_pf23h"]
-[ext_resource type="Texture2D" uid="uid://ds6oy28c4wye5" path="res://Assets/yoshiIsland/characters/mario/small/idle-look-up-duck-walk-run-skid.png" id="2_g2els"]
-[ext_resource type="Texture2D" uid="uid://dyp85fqfvft41" path="res://Assets/yoshiIsland/characters/mario/small/climVine-Death.png" id="2_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://cn3bsbf2whtv6" path="res://Assets/yoshiIsland/characters/mario/small/pipe-jump-fall-runJump-spinJump-slide-kick-victory.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://ds6oy28c4wye5" path="res://assets/characters/mario/small/idle-look-up-duck-walk-run-skid.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://dyp85fqfvft41" path="res://assets/characters/mario/small/climVine-Death.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://cn3bsbf2whtv6" path="res://assets/characters/mario/small/pipe-jump-fall-runJump-spinJump-slide-kick-victory.png" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://ccm0vbsu0k4q" path="res://scripts/States/StateMachine.cs" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://pasb1o700rgh" path="res://scripts/Player/states/PlayerIdle.cs" id="6_tuyoq"]
 [ext_resource type="Script" uid="uid://bjak537wfpfrf" path="res://scripts/Player/states/PlayerWalk.cs" id="7_fjrip"]
