@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://dyqrvx3n1aeck"]
+[gd_scene load_steps=8 format=4 uid="uid://dyqrvx3n1aeck"]
 
 [ext_resource type="Texture2D" uid="uid://0in4vh8ngoid" path="res://Assets/yoshiIsland/background.png" id="3_8jcsj"]
 [ext_resource type="PackedScene" uid="uid://qv0rwaaiawql" path="res://scenes/player.tscn" id="3_imrr5"]
 [ext_resource type="Texture2D" uid="uid://dhsykoy4cvnh0" path="res://Assets/yoshiIsland/yoshi_island_map.png" id="3_rv1d8"]
+[ext_resource type="Script" uid="uid://cxmtl4ycdydwx" path="res://scripts/Koopas.cs" id="4_rv1d8"]
+[ext_resource type="PackedScene" uid="uid://c2l46wkmkylha" path="res://scenes/koopa.tscn" id="5_8jcsj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jcsj"]
 texture = ExtResource("3_rv1d8")
@@ -377,6 +379,7 @@ texture = ExtResource("3_rv1d8")
 19:21/0 = 0
 19:21/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 19:21/0/physics_layer_0/polygon_0/one_way = true
+19:21/0/physics_layer_1/polygon_0/points = PackedVector2Array(-19.8508, -11.3912, -9.2972, -11.2795, -9.52056, -7.70579, -19.6274, -7.70579)
 21:21/0 = 0
 21:21/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 21:21/0/physics_layer_0/polygon_0/one_way = true
@@ -419,6 +422,7 @@ texture = ExtResource("3_rv1d8")
 34:21/0 = 0
 34:21/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 34:21/0/physics_layer_0/polygon_0/one_way = true
+34:21/0/physics_layer_1/polygon_0/points = PackedVector2Array(11.0793, -6.72672, 11.2771, -11.2771, 17.2125, -10.9804, 17.7071, -6.82564)
 44:21/0 = 0
 45:21/0 = 0
 46:21/0 = 0
@@ -3068,11 +3072,11 @@ texture = ExtResource("3_rv1d8")
 
 [sub_resource type="TileSet" id="TileSet_mxtig"]
 physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_8jcsj")
 
 [node name="Fase" type="Node2D"]
-
-[node name="Cherrys" type="Node" parent="."]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-714, 259)
@@ -3081,6 +3085,7 @@ tile_set = SubResource("TileSet_mxtig")
 
 [node name="Player" parent="." instance=ExtResource("3_imrr5")]
 z_index = 4
+position = Vector2(440, 112)
 
 [node name="ParallaxBackground" type="Node2D" parent="."]
 
@@ -3092,3 +3097,14 @@ z_index = -5
 position = Vector2(-10, -299)
 texture = ExtResource("3_8jcsj")
 centered = false
+
+[node name="Koopas" type="Node" parent="." node_paths=PackedStringArray("koopa")]
+script = ExtResource("4_rv1d8")
+koopa = NodePath("Koopa")
+_nKoopas = 8
+
+[node name="Koopa" parent="Koopas" instance=ExtResource("5_8jcsj")]
+position = Vector2(528, 64)
+
+[node name="Koopa2" parent="Koopas" instance=ExtResource("5_8jcsj")]
+position = Vector2(1760, 104)

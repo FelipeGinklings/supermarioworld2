@@ -1,0 +1,53 @@
+using Godot;
+
+
+public partial class KoopaWalk : KoopaState {
+
+    private enum WalkDirections { Left, Right }
+
+    private const string LEFT = "left";
+    private const string RIGHT = "right";
+    private const string TURN = "-turn-";
+
+    private WalkDirections direction = WalkDirections.Left;
+
+    public override void Enter() {
+        koopa.animationKoopa.Play(selectedColor + "-" + WALK);
+    }
+
+    public override void PhysicsUpdate(double delta) {
+        // Set velocity based on current direction
+        if (direction == WalkDirections.Left) {
+            koopa.Velocity = new Vector2(-koopa.speed, koopa.Velocity.Y);
+        } else {
+            koopa.Velocity = new Vector2(koopa.speed, koopa.Velocity.Y);
+        }
+
+        // Apply gravity
+        koopa.Velocity = new Vector2(koopa.Velocity.X, koopa.Velocity.Y + koopa.GetGravity().Y * (float)delta);
+
+        // Move and check for collisions
+        koopa.MoveAndSlide();
+
+
+        // Check if hit a wall
+        if (koopa.IsOnWall()) {
+            ToggleKoopaDirection();
+        }
+
+    }
+
+    private void ToggleKoopaDirection() {
+        koopa.animationKoopa.Stop();
+        var shouldFlip = direction == WalkDirections.Left;
+        if (shouldFlip) {
+            koopa.animationKoopa.Play(selectedColor + TURN + RIGHT);
+            direction = WalkDirections.Right;
+        } else {
+            koopa.animationKoopa.Play(selectedColor + TURN + LEFT);
+            direction = WalkDirections.Left;
+        }
+        koopa.animationKoopa.Play(selectedColor + "-" + WALK);
+        koopa.animationKoopa.FlipH = shouldFlip;
+    }
+}

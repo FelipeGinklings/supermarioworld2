@@ -2,12 +2,12 @@ using Godot;
 
 public partial class PlayerJump : PlayerState {
     public override void Enter() {
-        player.Velocity = new Vector2(player.Velocity.X, -player.jumpHeight);
+        player.Velocity = new Vector2(player.Velocity.X, player.maxJump);
         player.animationPlayer.Play(JUMP);
     }
 
     public override void PhysicsUpdate(double delta) {
-        float inputDirectionX = Input.GetAxis("move_left", "move_right");
+        float inputDirectionX = Input.GetAxis(INPUT_LEFT, INPUT_RIGHT);
         Vector2 velocity = player.Velocity;
         velocity.X = player.speed * inputDirectionX;
         velocity.Y += player.GetGravity().Y * (float)delta;
@@ -15,7 +15,7 @@ public partial class PlayerJump : PlayerState {
         player.MoveAndSlide();
 
         if (player.Velocity.Y >= 0) {
-            EmitSignal(SignalName.Transitioned, JUMP);
+            EmitSignal(SignalName.Transitioned, this, FALL);
         }
     }
 }

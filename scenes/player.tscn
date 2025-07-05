@@ -1,12 +1,14 @@
-[gd_scene load_steps=34 format=3 uid="uid://qv0rwaaiawql"]
+[gd_scene load_steps=36 format=3 uid="uid://qv0rwaaiawql"]
 
-[ext_resource type="Script" uid="uid://cybuwmbcegwkb" path="res://scripts/Player.cs" id="1_pf23h"]
+[ext_resource type="Script" uid="uid://cybuwmbcegwkb" path="res://scripts/Player/Player.cs" id="1_pf23h"]
 [ext_resource type="Texture2D" uid="uid://ds6oy28c4wye5" path="res://Assets/yoshiIsland/characters/mario/small/idle-look-up-duck-walk-run-skid.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dyp85fqfvft41" path="res://Assets/yoshiIsland/characters/mario/small/climVine-Death.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cn3bsbf2whtv6" path="res://Assets/yoshiIsland/characters/mario/small/pipe-jump-fall-runJump-spinJump-slide-kick-victory.png" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://ccm0vbsu0k4q" path="res://scripts/States/StateMachine.cs" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://pasb1o700rgh" path="res://scripts/Player/states/PlayerIdle.cs" id="6_tuyoq"]
 [ext_resource type="Script" uid="uid://bjak537wfpfrf" path="res://scripts/Player/states/PlayerWalk.cs" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://1vmexm7pqa2w" path="res://scripts/Player/states/PlayerJump.cs" id="8_smehm"]
+[ext_resource type="Script" uid="uid://b7arll68ak2j0" path="res://scripts/Player/states/PlayerFall.cs" id="9_ur7pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_qhqgy")
@@ -111,7 +113,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"climb",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -119,7 +121,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"death",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -127,7 +129,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"duck",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -135,7 +137,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -143,7 +145,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -151,7 +153,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -159,7 +161,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"kick",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -167,7 +169,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"look_up",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -175,7 +177,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"pipe",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -189,7 +191,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 30.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -197,7 +199,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"runJump",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -205,7 +207,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"skid",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -222,7 +224,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"spinJump",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -230,7 +232,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"victory",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -244,11 +246,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 30.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31cv2"]
-size = Vector2(17, 22)
+size = Vector2(14, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf23h"]
 size = Vector2(17, 22)
@@ -264,15 +266,13 @@ visibility_layer = 3
 texture_filter = 1
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"duck"
+animation = &"climb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-1.5, 5)
+position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_31cv2")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
@@ -280,7 +280,7 @@ position = Vector2(-1.5, 5)
 shape = SubResource("RectangleShape2D_pf23h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
+position = Vector2(0, -62)
 limit_left = -10
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
@@ -292,3 +292,9 @@ script = ExtResource("6_tuyoq")
 
 [node name="Walk" type="Node" parent="State Machine"]
 script = ExtResource("7_fjrip")
+
+[node name="Jump" type="Node" parent="State Machine"]
+script = ExtResource("8_smehm")
+
+[node name="Fall" type="Node" parent="State Machine"]
+script = ExtResource("9_ur7pv")
