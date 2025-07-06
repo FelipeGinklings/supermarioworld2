@@ -254,7 +254,7 @@ animations = [{
 size = Vector2(14, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf23h"]
-size = Vector2(17, 22)
+size = Vector2(13.5625, 1.8125)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
 script = ExtResource("1_pf23h")
@@ -273,11 +273,13 @@ animation = &"run"
 position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_31cv2")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Foot" type="Area2D" parent="."]
+position = Vector2(7, 5)
+collision_layer = 0
+collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(-1.5, 5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foot"]
+position = Vector2(-8, 7)
 shape = SubResource("RectangleShape2D_pf23h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -302,3 +304,5 @@ script = ExtResource("9_ur7pv")
 
 [node name="Victory" type="Node" parent="State Machine"]
 script = ExtResource("10_y4r1p")
+
+[connection signal="body_entered" from="Foot" to="." method="OnFootBodyEntered"]

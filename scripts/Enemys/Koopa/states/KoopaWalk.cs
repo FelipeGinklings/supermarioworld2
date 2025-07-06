@@ -29,12 +29,9 @@ public partial class KoopaWalk : KoopaState {
         // Move and check for collisions
         koopa.MoveAndSlide();
 
-
-        // Check if hit a wall
         if (koopa.IsOnWall()) {
             ToggleKoopaDirection();
         }
-
     }
 
     private void ToggleKoopaDirection() {

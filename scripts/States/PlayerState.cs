@@ -8,13 +8,15 @@ public partial class PlayerState : State {
     public const string VICTORY = "victory";
     public const string DEATH = "death";
     public const string SPIN_JUMP = "spinJump";
-    public const string LOOK_UP = "look_up";
-    public const string DUCK = "duck";
     public const string WALK = "walk";
     public const string SKID = "skid";
     public const string CLIMB = "climb";
     // public const string GROW_UP = "grow_up"; // Animação não existe no SpriteFrames
     // public const string SHRINK_DOWN = "shrink_down"; // Animação não existe no SpriteFrames
+
+    // Animations names only
+    public const string LOOK_UP = "look_up";
+    public const string DUCK = "duck";
 
     // Input action names
     public const string INPUT_LEFT = "ui_left";

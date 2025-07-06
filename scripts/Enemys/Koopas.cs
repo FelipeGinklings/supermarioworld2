@@ -20,7 +20,7 @@ public partial class Koopas : Node {
                 koopaWidth = rect.Size.X;
             }
 
-            newKoopa.Position = new Vector2(koopa.Position.X - (i * koopaWidth + 10), koopa.Position.Y);
+            newKoopa.Position = new Vector2(koopa.Position.X - ((i * koopaWidth) + 50), koopa.Position.Y);
             AddChild(newKoopa);
         }
     }

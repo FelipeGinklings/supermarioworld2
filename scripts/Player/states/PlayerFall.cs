@@ -17,9 +17,9 @@ public partial class PlayerFall : PlayerState {
 
         if (player.IsOnFloor()) {
             if (Mathf.IsEqualApprox(inputDirectionX, 0.0f)) {
-                EmitSignal(SignalName.Transitioned, this, IDLE);
+                EmitSignal(State.SignalName.Transitioned, this, IDLE);
             } else {
-                EmitSignal(SignalName.Transitioned, this, WALK);
+                EmitSignal(State.SignalName.Transitioned, this, WALK);
             }
         }
     }

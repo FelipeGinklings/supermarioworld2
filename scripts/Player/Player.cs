@@ -6,4 +6,11 @@ public partial class Player : CharacterBody2D {
     [Export] public AnimatedSprite2D animationPlayer;
 
     public bool ReachedTheEnd;
+
+    private void OnFootBodyEntered(Node body) {
+        GD.Print("OnFootBodyEntered");
+        if (body is Koopa) {
+            body.Call("GotHit");
+        }
+    }
 }

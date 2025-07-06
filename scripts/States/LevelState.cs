@@ -1,7 +1,7 @@
 public partial class LevelState : State {
     public const string VICTORY = "victory";
     public const string PLAYING = "playing";
-    public const string GAME_OVER = "game-over";
+    public const string GAME_OVER = "gameOver";
 
     protected Level gameLevel;
 

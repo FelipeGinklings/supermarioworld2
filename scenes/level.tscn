@@ -3077,9 +3077,10 @@ texture = ExtResource("1_2r41h")
 20:21/0/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSet" id="TileSet_mxtig"]
-physics_layer_0/collision_layer = 1
-physics_layer_1/collision_layer = 2
-physics_layer_1/collision_mask = 3
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
+physics_layer_1/collision_layer = 16
+physics_layer_1/collision_mask = 16
 sources/0 = SubResource("TileSetAtlasSource_8jcsj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jcsj"]
@@ -3097,7 +3098,8 @@ tile_set = SubResource("TileSet_mxtig")
 
 [node name="Player" parent="." instance=ExtResource("2_klq6b")]
 z_index = 4
-position = Vector2(4787, 90)
+position = Vector2(441, 116)
+collision_mask = 6
 
 [node name="ParallaxBackground" type="Node2D" parent="."]
 
@@ -3113,13 +3115,17 @@ centered = false
 [node name="Koopas" type="Node" parent="." node_paths=PackedStringArray("koopa")]
 script = ExtResource("4_8c41q")
 koopa = NodePath("Koopa")
-_nKoopas = 8
+_nKoopas = 3
 
 [node name="Koopa" parent="Koopas" instance=ExtResource("5_olg7q")]
-position = Vector2(528, 64)
+position = Vector2(532, 62)
 
 [node name="Koopa2" parent="Koopas" instance=ExtResource("5_olg7q")]
-position = Vector2(1760, 104)
+position = Vector2(1814, 112)
+Color = 1
+
+[node name="Koopa3" parent="Koopas" instance=ExtResource("5_olg7q")]
+position = Vector2(1653, 112)
 
 [node name="End" type="Area2D" parent="."]
 position = Vector2(-1, 0)
@@ -3143,6 +3149,12 @@ script = ExtResource("8_olg7q")
 
 [node name="Victory" type="Node" parent="State Machine"]
 script = ExtResource("9_t1rx8")
+
+[node name="Koopa" parent="State Machine" instance=ExtResource("5_olg7q")]
+position = Vector2(471, 114)
+
+[node name="Koopa2" parent="State Machine" instance=ExtResource("5_olg7q")]
+position = Vector2(471, 115)
 
 [node name="Time" type="Timer" parent="."]
 wait_time = 300.0

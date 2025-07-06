@@ -12,6 +12,7 @@ config_version=5
 
 config/name="SuperMarioWorld2"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+run/max_fps=30
 config/icon="res://icon.svg"
 
 [display]
@@ -26,3 +27,12 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="SuperMarioWorld2"
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Platforms"
+2d_physics/layer_4="PlayerAttack"
+2d_physics/layer_5="Enemy Specific Platforms"
+2d_physics/layer_6="EnemysHitBox"

@@ -6,7 +6,7 @@ public partial class Koopa : CharacterBody2D {
     public enum KoopaColor { Red, Green }
     [Export] public KoopaColor Color;
     [Export] public AnimatedSprite2D animationKoopa;
-    public float speed = 50.0f;
+    public float speed = 30.0f;
     public float jumpVelocity = -400.0f;
 
     public const string GREEN = "green";
@@ -18,4 +18,8 @@ public partial class Koopa : CharacterBody2D {
     };
 
     public string selectedColor => colors[Color];
+
+    public void GotHit() {
+        GD.Print("Got Hit!");
+    }
 }
