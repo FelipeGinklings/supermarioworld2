@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public partial class Shell : RigidBody2D {
     [Export] public AnimatedSprite2D animationShell;
-    [Export] public float speed = 100.0f;
+    [Export] public float speed = 300.0f;
 
     public enum ShellColor { Red, Green }
     [Export] public ShellColor Color;
@@ -12,6 +12,9 @@ public partial class Shell : RigidBody2D {
         { ShellColor.Red, "red" },
         { ShellColor.Green, "green" }
     };
-
     public string selectedColor => colors[Color];
+    public override void _Ready() {
+        GravityScale = 1.0f; // Keep gravity for falling
+        LockRotation = true; // Prevent rotation
+    }
 }

@@ -134,7 +134,7 @@ shape = SubResource("RectangleShape2D_birhf")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qh4gb")
 animation = &"green-walk"
-frame_progress = 0.939795
+frame_progress = 0.270191
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_l6wnq")

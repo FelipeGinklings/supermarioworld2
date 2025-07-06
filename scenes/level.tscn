@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dyqrvx3n1aeck"]
+[gd_scene load_steps=15 format=4 uid="uid://dyqrvx3n1aeck"]
 
 [ext_resource type="Texture2D" uid="uid://dhsykoy4cvnh0" path="res://assets/yoshi_island_map.png" id="1_2r41h"]
 [ext_resource type="Script" uid="uid://b5cwvnx6y6vg0" path="res://scripts/Level/Level.cs" id="1_olg7q"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dpyhn7f3ut808" path="res://scripts/Level/states/LevelPlaying.cs" id="7_8c41q"]
 [ext_resource type="Script" uid="uid://qsb554f2lsuu" path="res://scripts/Level/states/LevelGameOver.cs" id="8_olg7q"]
 [ext_resource type="Script" uid="uid://b565ivuxegior" path="res://scripts/Level/states/LevelVictory.cs" id="9_t1rx8"]
+[ext_resource type="PackedScene" uid="uid://bpmxgefdkc2dv" path="res://scenes/shell.tscn" id="11_t1rx8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jcsj"]
 texture = ExtResource("1_2r41h")
@@ -3150,8 +3151,8 @@ script = ExtResource("9_t1rx8")
 [node name="Time" type="Timer" parent="."]
 wait_time = 300.0
 
-[node name="Koopa" parent="." instance=ExtResource("5_olg7q")]
-position = Vector2(4732, 112)
+[node name="Shell" parent="." instance=ExtResource("11_t1rx8")]
+position = Vector2(4593, 119)
 
 [connection signal="body_entered" from="End" to="Player" method="FinishLine"]
 [connection signal="body_entered" from="End" to="State Machine/Playing" method="FinishLine"]

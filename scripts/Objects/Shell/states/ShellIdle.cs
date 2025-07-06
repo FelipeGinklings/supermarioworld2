@@ -8,11 +8,17 @@ public partial class ShellIdle : ShellState {
         shell.animationShell.Play(shell.selectedColor + "-idle");
     }
 
-    public override void Exit() {
-        // Stop the idle animation
-        shell.animationShell.Stop();
+    public void GoToLeft(Node2D _body) {
+        direction = WalkDirections.Left;
+        EmitSignal(State.SignalName.Transitioned, this, SPIN);
     }
 
-    public override void PhysicsUpdate(double delta) {
+    public void GoToRight(Node2D _body) {
+        direction = WalkDirections.Right;
+        EmitSignal(State.SignalName.Transitioned, this, SPIN);
+    }
+
+    public override void Exit() {
+        shell.animationShell.Stop();
     }
 }
