@@ -3097,7 +3097,7 @@ tile_set = SubResource("TileSet_mxtig")
 
 [node name="Player" parent="." instance=ExtResource("2_klq6b")]
 z_index = 4
-position = Vector2(4737, 118)
+position = Vector2(4787, 90)
 
 [node name="ParallaxBackground" type="Node2D" parent="."]
 
@@ -3122,6 +3122,7 @@ position = Vector2(528, 64)
 position = Vector2(1760, 104)
 
 [node name="End" type="Area2D" parent="."]
+position = Vector2(-1, 0)
 collision_layer = 0
 script = ExtResource("7_t1rx8")
 
@@ -3145,6 +3146,5 @@ script = ExtResource("9_t1rx8")
 
 [node name="Time" type="Timer" parent="."]
 wait_time = 300.0
-autostart = true
 
 [connection signal="body_entered" from="End" to="End" method="OnBodyEntered"]

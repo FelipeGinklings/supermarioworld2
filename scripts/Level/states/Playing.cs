@@ -2,8 +2,11 @@ using Godot;
 using System;
 
 public partial class Playing : LevelState {
+    public override void Enter() {
+        gameLevel.GameTimer.Start();
+    }
     public override void Update(double delta) {
-        var (GameTimer, Coins, Points, YoshiCoins, Lives, HitsRemaining, LevelPoints, PlayerReachedEnd) = gameLevel.GetValues();
+        var (GameTimer, HitsRemaining, PlayerReachedEnd) = gameLevel.GetPlayingValues();
 
         if (PlayerReachedEnd) {
             EmitSignal(State.SignalName.Transitioned, this, VICTORY);

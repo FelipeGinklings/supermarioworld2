@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://qv0rwaaiawql"]
+[gd_scene load_steps=37 format=3 uid="uid://qv0rwaaiawql"]
 
 [ext_resource type="Script" uid="uid://cybuwmbcegwkb" path="res://scripts/Player/Player.cs" id="1_pf23h"]
 [ext_resource type="Texture2D" uid="uid://ds6oy28c4wye5" path="res://assets/characters/mario/small/idle-look-up-duck-walk-run-skid.png" id="2_g2els"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bjak537wfpfrf" path="res://scripts/Player/states/PlayerWalk.cs" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://1vmexm7pqa2w" path="res://scripts/Player/states/PlayerJump.cs" id="8_smehm"]
 [ext_resource type="Script" uid="uid://b7arll68ak2j0" path="res://scripts/Player/states/PlayerFall.cs" id="9_ur7pv"]
+[ext_resource type="Script" uid="uid://x3a83pppegg7" path="res://scripts/Player/states/PlayerVictory.cs" id="10_y4r1p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_qhqgy")
@@ -266,7 +267,7 @@ visibility_layer = 3
 texture_filter = 1
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"climb"
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
@@ -298,3 +299,6 @@ script = ExtResource("8_smehm")
 
 [node name="Fall" type="Node" parent="State Machine"]
 script = ExtResource("9_ur7pv")
+
+[node name="Victory" type="Node" parent="State Machine"]
+script = ExtResource("10_y4r1p")

@@ -214,7 +214,7 @@ shape = SubResource("RectangleShape2D_khn87")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_tyfma")
-animation = &"green-turn-left"
+animation = &"red-walk"
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("5_grttc")
