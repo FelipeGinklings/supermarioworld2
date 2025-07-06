@@ -1,0 +1,166 @@
+[gd_scene load_steps=21 format=3 uid="uid://bpmxgefdkc2dv"]
+
+[ext_resource type="Texture2D" uid="uid://cspp3bwp4bs6x" path="res://assets/enemys/shell/rotate-empty/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="1_bo4bk"]
+[ext_resource type="Script" uid="uid://cd6jiogrlfty2" path="res://scripts/Objects/Shell/Shell.cs" id="1_k7uw7"]
+[ext_resource type="Script" uid="uid://danm7n3p76kby" path="res://scripts/States/ShellState.cs" id="2_8y80q"]
+[ext_resource type="Script" uid="uid://btvu1yif2qtry" path="res://scripts/Objects/Shell/states/ShellIdle.cs" id="3_k7uw7"]
+[ext_resource type="Script" uid="uid://bra3p5kfrcf17" path="res://scripts/Objects/Shell/states/ShellSpin.cs" id="4_qr86p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb42f"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fq18"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y80q"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7uw7"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr86p"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdvxk"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvj04"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sow7m"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy0sh"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqijv"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf6aw"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30ywq"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khbe3"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uout3"]
+atlas = ExtResource("1_bo4bk")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_piqpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb42f")
+}],
+"loop": true,
+"name": &"green-dle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fq18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8y80q")
+}],
+"loop": true,
+"name": &"green-merge",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7uw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr86p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdvxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvj04")
+}],
+"loop": true,
+"name": &"green-spin",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sow7m")
+}],
+"loop": true,
+"name": &"red-idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy0sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqijv")
+}],
+"loop": true,
+"name": &"red-merge",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf6aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30ywq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khbe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uout3")
+}],
+"loop": true,
+"name": &"red-spin",
+"speed": 30.0
+}]
+
+[node name="Shell" type="RigidBody2D"]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("1_k7uw7")
+
+[node name="Right" type="CollisionPolygon2D" parent="."]
+position = Vector2(11, -8)
+polygon = PackedVector2Array(-11, 21, 3, 21, 3, 8, -11, -5)
+
+[node name="Left" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -13, -14, 2, -14, 13, 0, 13)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.75501, 1.61013)
+sprite_frames = SubResource("SpriteFrames_piqpj")
+animation = &"red-idle"
+frame_progress = 0.256764
+
+[node name="State Machine" type="Node" parent="."]
+script = ExtResource("2_8y80q")
+
+[node name="Idle" type="Node" parent="State Machine"]
+script = ExtResource("3_k7uw7")
+
+[node name="Spin" type="Node" parent="State Machine"]
+script = ExtResource("4_qr86p")

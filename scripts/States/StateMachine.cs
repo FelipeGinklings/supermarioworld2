@@ -11,7 +11,6 @@ public partial class StateMachine : Node {
     public override void _Ready() {
         foreach (Node child in GetChildren()) {
             if (child is State state) {
-                GD.Print(child.Name.ToString());
                 states[child.Name.ToString().ToLower()] = state;
                 state.Transitioned += OnChildTransitioned;
             }

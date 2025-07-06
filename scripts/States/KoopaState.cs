@@ -1,6 +1,14 @@
 
 public partial class KoopaState : State {
     public const string WALK = "walk";
+    public const string SEPARATE = "separate";
+
+
+    public enum WalkDirections { Left, Right }
+
+    public const string LEFT = "left";
+    public const string RIGHT = "right";
+    public const string TURN = "-turn-";
 
     protected Koopa koopa;
 

@@ -1,15 +1,24 @@
 using Godot;
 using System;
 
-public partial class KoopaSeparate : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+public partial class KoopaSeparate : KoopaState {
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void Enter() {
+        GD.Print("KoopaSeparate: Entering state");
+        // Use CallDeferred to avoid physics query flushing issues
+        CallDeferred(nameof(PerformSeparation));
+    }
+
+    private void PerformSeparation() {
+        GetTree().CreateTimer(0.15f).Timeout += () => {
+            Node parent = koopa.GetParent();
+            Vector2 koopaPosition = koopa.GlobalPosition;
+            koopa.QueueFree();
+            PackedScene grubScene = GD.Load<PackedScene>("res://scenes/grub.tscn");
+            Node grubInstance = grubScene.Instantiate();
+            ((Node2D)grubInstance).GlobalPosition = koopaPosition;
+            parent.AddChild(grubInstance);
+        };
+    }
+
 }

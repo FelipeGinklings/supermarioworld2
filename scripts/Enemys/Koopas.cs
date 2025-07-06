@@ -23,6 +23,8 @@ public partial class Koopas : Node {
             newKoopa.Position = new Vector2(koopa.Position.X - ((i * koopaWidth) + 50), koopa.Position.Y);
             AddChild(newKoopa);
         }
+
+        koopa.QueueFree(); // Remove the original koopa from the scene
     }
 
 

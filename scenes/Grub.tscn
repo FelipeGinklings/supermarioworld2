@@ -1,56 +1,67 @@
-[gd_scene load_steps=19 format=3 uid="uid://dq6rdk88jsi3y"]
+[gd_scene load_steps=23 format=3 uid="uid://dq6rdk88jsi3y"]
 
-[ext_resource type="Script" uid="uid://ccfvjc1oi1e0j" path="res://scripts/Enemys/Grub/Grub.cs" id="1_k547b"]
-[ext_resource type="Texture2D" uid="uid://t0aqpqec04x4" path="res://assets/enemys/koopa/walk-kicked/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="1_xbbjb"]
-[ext_resource type="Script" uid="uid://dyjhe6pchos6y" path="res://scripts/Enemys/Grub/states/GrubWalk.cs" id="4_j4kkq"]
-[ext_resource type="Script" uid="uid://ccm0vbsu0k4q" path="res://scripts/States/StateMachine.cs" id="5_sw2mv"]
-[ext_resource type="Script" uid="uid://b7vxbfha5sixf" path="res://scripts/Enemys/Grub/states/GrupMerge.cs" id="5_ywnc2"]
-[ext_resource type="Script" uid="uid://dr1q341kjm6qj" path="res://scripts/Enemys/Grub/states/GrupDeath.cs" id="6_0ctoa"]
+[ext_resource type="Script" uid="uid://ccfvjc1oi1e0j" path="res://scripts/Enemys/Grub/Grub.cs" id="1_jck51"]
+[ext_resource type="Texture2D" uid="uid://t0aqpqec04x4" path="res://assets/enemys/koopa/walk-kicked/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="2_iive0"]
+[ext_resource type="Script" uid="uid://ccm0vbsu0k4q" path="res://scripts/States/StateMachine.cs" id="3_l6wnq"]
+[ext_resource type="Script" uid="uid://fj315wgkn7u0" path="res://scripts/Enemys/Grub/states/GrubCreation.cs" id="4_oheme"]
+[ext_resource type="Script" uid="uid://b7vxbfha5sixf" path="res://scripts/Enemys/Grub/states/GrupMerge.cs" id="5_f4pdn"]
+[ext_resource type="Script" uid="uid://dyjhe6pchos6y" path="res://scripts/Enemys/Grub/states/GrubWalk.cs" id="6_k2k8t"]
+[ext_resource type="Script" uid="uid://dr1q341kjm6qj" path="res://scripts/Enemys/Grub/states/GrupDeath.cs" id="7_ay8jv"]
+[ext_resource type="Script" uid="uid://dkd5pkaysl57o" path="res://scripts/Enemys/Grub/states/GrubWait.cs" id="8_iive0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_birhf"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot18w"]
+atlas = ExtResource("2_iive0")
+region = Rect2(32, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vo5xu"]
-atlas = ExtResource("1_xbbjb")
+atlas = ExtResource("2_iive0")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxn1o"]
-atlas = ExtResource("1_xbbjb")
+atlas = ExtResource("2_iive0")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xum81"]
-atlas = ExtResource("1_xbbjb")
+atlas = ExtResource("2_iive0")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_grttc"]
-atlas = ExtResource("1_xbbjb")
+atlas = ExtResource("2_iive0")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ot18w"]
-atlas = ExtResource("1_xbbjb")
-region = Rect2(32, 64, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc3v2"]
+atlas = ExtResource("2_iive0")
+region = Rect2(0, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xi6ac"]
-atlas = ExtResource("1_xbbjb")
+atlas = ExtResource("2_iive0")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5frmb"]
-atlas = ExtResource("1_xbbjb")
+atlas = ExtResource("2_iive0")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqhx2"]
-atlas = ExtResource("1_xbbjb")
+atlas = ExtResource("2_iive0")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hg0fw"]
-atlas = ExtResource("1_xbbjb")
+atlas = ExtResource("2_iive0")
 region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vc3v2"]
-atlas = ExtResource("1_xbbjb")
-region = Rect2(0, 64, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qh4gb"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot18w")
+}],
+"loop": true,
+"name": &"green-death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vo5xu")
@@ -70,15 +81,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_grttc")
 }],
 "loop": true,
-"name": &"green-small-walk",
+"name": &"green-walk",
 "speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ot18w")
+"texture": SubResource("AtlasTexture_vc3v2")
 }],
 "loop": true,
-"name": &"green-stomped",
+"name": &"red-death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -100,38 +111,70 @@ animations = [{
 "texture": SubResource("AtlasTexture_hg0fw")
 }],
 "loop": true,
-"name": &"red-small-walk",
+"name": &"red-walk",
 "speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vc3v2")
-}],
-"loop": true,
-"name": &"red-stomped",
-"speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_k547b")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iive0"]
+size = Vector2(16, 8)
 
-[node name="Floor" type="CollisionShape2D" parent="."]
-position = Vector2(1564, 1036)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6wnq"]
+size = Vector2(16, 16)
+
+[node name="Grub" type="CharacterBody2D" node_paths=PackedStringArray("animationGrub")]
+collision_layer = 2
+collision_mask = 22
+script = ExtResource("1_jck51")
+animationGrub = NodePath("AnimatedSprite2D")
+
+[node name="Body" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_birhf")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qh4gb")
-animation = &"red-kicked"
+animation = &"green-walk"
+frame_progress = 0.939795
 
-[node name="State Machine" type="Node" parent="."]
-script = ExtResource("5_sw2mv")
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
+script = ExtResource("3_l6wnq")
+InitialState = NodePath("Creation")
 
-[node name="Walk" type="Node" parent="State Machine"]
-script = ExtResource("4_j4kkq")
+[node name="Creation" type="Node" parent="State Machine"]
+script = ExtResource("4_oheme")
 
 [node name="Merge" type="Node" parent="State Machine"]
-script = ExtResource("5_ywnc2")
+script = ExtResource("5_f4pdn")
+
+[node name="Walk" type="Node" parent="State Machine" node_paths=PackedStringArray("raycast")]
+script = ExtResource("6_k2k8t")
+raycast = NodePath("See Sheel")
+
+[node name="See Sheel" type="RayCast2D" parent="State Machine/Walk"]
+target_position = Vector2(-40, 0)
+collision_mask = 2
+
+[node name="HitBox" type="Area2D" parent="State Machine/Walk"]
+collision_layer = 32
+collision_mask = 64
+
+[node name="HitBox" type="CollisionShape2D" parent="State Machine/Walk/HitBox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_iive0")
 
 [node name="Death" type="Node" parent="State Machine"]
-script = ExtResource("6_0ctoa")
+script = ExtResource("7_ay8jv")
+
+[node name="Wait" type="Node" parent="State Machine"]
+script = ExtResource("8_iive0")
+
+[node name="WaitHitBox" type="Area2D" parent="State Machine/Wait"]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Wait/WaitHitBox"]
+scale = Vector2(-1.06923, 1.054)
+shape = SubResource("RectangleShape2D_l6wnq")
+
+[connection signal="area_entered" from="State Machine/Walk/HitBox" to="State Machine/Walk" method="GotHitOnWalk"]
+[connection signal="area_entered" from="State Machine/Wait/WaitHitBox" to="State Machine/Wait" method="GotHitOnWait"]

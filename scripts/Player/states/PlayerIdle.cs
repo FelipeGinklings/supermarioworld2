@@ -2,11 +2,16 @@ using Godot;
 
 
 public partial class PlayerIdle : PlayerState {
+    private bool gotHit = false;
     public override void Enter() {
         player.Velocity = new Vector2(0.0f, player.Velocity.Y);
         player.animationPlayer.Play(IDLE);
     }
 
+    public void GotHit(Node2D _body) {
+        GD.Print("KoopaWalk: GotHit");
+        gotHit = true;
+    }
     public override void PhysicsUpdate(double delta) {
         if (player.ReachedTheEnd) {
             EmitSignal(State.SignalName.Transitioned, this, VICTORY);

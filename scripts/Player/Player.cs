@@ -7,10 +7,7 @@ public partial class Player : CharacterBody2D {
 
     public bool ReachedTheEnd;
 
-    private void OnFootBodyEntered(Node body) {
-        GD.Print("OnFootBodyEntered");
-        if (body is Koopa) {
-            body.Call("GotHit");
-        }
+    private void FinishLine(Node _body) {
+        ReachedTheEnd = true;
     }
 }

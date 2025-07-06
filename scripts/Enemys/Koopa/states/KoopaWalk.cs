@@ -2,15 +2,7 @@ using Godot;
 
 
 public partial class KoopaWalk : KoopaState {
-
-    private enum WalkDirections { Left, Right }
-
-    private const string LEFT = "left";
-    private const string RIGHT = "right";
-    private const string TURN = "-turn-";
-
     private WalkDirections direction = WalkDirections.Left;
-
     public override void Enter() {
         koopa.animationKoopa.Play(koopa.selectedColor + "-" + WALK);
     }
@@ -46,5 +38,11 @@ public partial class KoopaWalk : KoopaState {
         }
         koopa.animationKoopa.Play(koopa.selectedColor + "-" + WALK);
         koopa.animationKoopa.FlipH = shouldFlip;
+    }
+
+    public void GotHit(Area2D _area) {
+        GD.Print("KoopaWalk: GotHit");
+        koopa.SetPhysicsProcess(false);
+        EmitSignal(State.SignalName.Transitioned, this, SEPARATE);
     }
 }

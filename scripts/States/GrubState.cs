@@ -1,15 +1,26 @@
 using Godot;
 using System;
 
-public partial class GrubState : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+public partial class GrubState : State {
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public const string CREATION = "creation";
+    public const string WALK = "walk";
+    public const string WAIT = "wait";
+    public const string DEATH = "death";
+    public const string MERGE = "merge";
+
+    // Animation names
+    public const string KICKED = "-kicked";
+
+    // Directions for walking
+    public enum WalkDirections { Left, Right }
+    public const string LEFT = "left";
+    public const string RIGHT = "right";
+
+    protected Grub grub;
+
+    public override void _Ready() {
+        grub = Owner as Grub;
+        System.Diagnostics.Debug.Assert(grub != null, "The KoopaState state type must be used only in the player scene. It needs the owner to be a Koopa node.");
+    }
 }

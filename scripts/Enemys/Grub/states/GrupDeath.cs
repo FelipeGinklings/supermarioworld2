@@ -1,15 +1,11 @@
 using Godot;
 using System;
 
-public partial class GrupDeath : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+public partial class GrupDeath : GrubState {
+    public override void Enter() {
+        // Play the death animation
+        grub.animationGrub.Play(grub.selectedColor + "-" + DEATH);
+        // Delete the node after a short delay
+        grub.QueueFree();
+    }
 }
