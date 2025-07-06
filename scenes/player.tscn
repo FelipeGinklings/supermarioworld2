@@ -255,9 +255,10 @@ animations = [{
 size = Vector2(16, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf23h"]
-size = Vector2(11.4252, 0.613753)
+size = Vector2(12.3839, 0.398426)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
+collision_mask = 0
 script = ExtResource("1_pf23h")
 animationPlayer = NodePath("AnimatedSprite2D")
 metadata/_edit_group_ = true
@@ -270,7 +271,7 @@ position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
 animation = &"run"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Player" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_31cv2")
 
@@ -298,18 +299,19 @@ script = ExtResource("8_smehm")
 [node name="Fall" type="Node" parent="State Machine"]
 script = ExtResource("9_ur7pv")
 
-[node name="HitBox" type="Area2D" parent="State Machine/Fall"]
+[node name="Victory" type="Node" parent="State Machine"]
+script = ExtResource("10_y4r1p")
+
+[node name="PlayerFoot" type="Area2D" parent="."]
 position = Vector2(7, 5)
 collision_layer = 64
-collision_mask = 32
+collision_mask = 288
 
-[node name="HitBox" type="CollisionShape2D" parent="State Machine/Fall/HitBox"]
-position = Vector2(-8, 6.54045)
+[node name="PlayerFoot" type="CollisionShape2D" parent="PlayerFoot"]
+position = Vector2(-8, 6)
 rotation = 3.14159
 scale = Vector2(1.292, -5.01976)
 shape = SubResource("RectangleShape2D_pf23h")
 
-[node name="Victory" type="Node" parent="State Machine"]
-script = ExtResource("10_y4r1p")
-
-[connection signal="area_entered" from="State Machine/Fall/HitBox" to="State Machine/Fall" method="HaveHitSomething"]
+[connection signal="area_entered" from="PlayerFoot" to="State Machine/Walk" method="Kick"]
+[connection signal="area_entered" from="PlayerFoot" to="State Machine/Fall" method="Stomp"]

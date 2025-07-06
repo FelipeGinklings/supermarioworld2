@@ -4,6 +4,7 @@ using System;
 public partial class ShellState : State {
     public const string IDLE = "idle";
     public const string SPIN = "spin";
+    public const string FOOT = "PlayerFoot";
 
     public enum WalkDirections { Left, Right }
     public WalkDirections direction;

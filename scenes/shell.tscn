@@ -141,11 +141,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvj04"]
-size = Vector2(6.36813, 3.8175)
+size = Vector2(6.36813, 21.0801)
 
 [node name="Shell" type="RigidBody2D" node_paths=PackedStringArray("animationShell")]
 collision_layer = 128
-collision_mask = 7
+collision_mask = 134
 script = ExtResource("1_k7uw7")
 animationShell = NodePath("AnimatedSprite2D")
 
@@ -159,8 +159,8 @@ debug_color = Color(0.540368, 0.407265, 1, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_piqpj")
-animation = &"red-idle"
-frame_progress = 0.256764
+animation = &"red-spin"
+frame_progress = 0.169247
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_qr86p")
@@ -169,35 +169,39 @@ InitialState = NodePath("Idle")
 [node name="Idle" type="Node" parent="State Machine"]
 script = ExtResource("3_k7uw7")
 
-[node name="LeftDetector" type="Area2D" parent="State Machine/Idle"]
-collision_layer = 0
-
-[node name="LeftCollision" type="CollisionPolygon2D" parent="State Machine/Idle/LeftDetector"]
-scale = Vector2(0.573301, 0.625208)
-polygon = PackedVector2Array(0, -12.7958, -13.9543, 1.59947, -13.9543, 12.7958, 0, 12.7958)
-
-[node name="RightDetector" type="Area2D" parent="State Machine/Idle"]
-collision_layer = 0
-
-[node name="RightCollision" type="CollisionPolygon2D" parent="State Machine/Idle/RightDetector"]
-position = Vector2(11, -8)
-scale = Vector2(0.643746, 0.602069)
-polygon = PackedVector2Array(-17.0875, 26.575, -4.66023, 26.575, -4.66023, 13.2875, -17.0875, 0)
-
 [node name="Spin" type="Node" parent="State Machine"]
 script = ExtResource("4_qr86p")
 
 [node name="Top" type="Area2D" parent="State Machine/Spin"]
-collision_layer = 0
-collision_mask = 64
+collision_layer = 256
+collision_mask = 68
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Spin/Top"]
-position = Vector2(2.38419e-07, -6.55124)
+position = Vector2(2.38419e-07, -9.53674e-07)
 scale = Vector2(1.88438, 0.759011)
 shape = SubResource("RectangleShape2D_vvj04")
 debug_color = Color(0.262203, 0.633859, 0, 0.42)
 
+[node name="LeftDetector" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 68
+
+[node name="LeftCollision" type="CollisionPolygon2D" parent="LeftDetector"]
+scale = Vector2(0.573301, 0.625208)
+polygon = PackedVector2Array(0, -12.7958, -15.6986, 1.59947, -15.6986, 11.1963, 0, 11.1963)
+
+[node name="RightDetector" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 68
+
+[node name="RightCollision" type="CollisionPolygon2D" parent="RightDetector"]
+position = Vector2(11, -8)
+scale = Vector2(0.643746, 0.602069)
+polygon = PackedVector2Array(-17.0875, 24.9141, -3.10682, 24.9141, -3.10682, 13.2875, -17.0875, 0)
+
 [connection signal="body_entered" from="." to="State Machine/Spin" method="Kill"]
-[connection signal="body_entered" from="State Machine/Idle/LeftDetector" to="State Machine/Idle" method="GoToRight"]
-[connection signal="body_entered" from="State Machine/Idle/RightDetector" to="State Machine/Idle" method="GoToLeft"]
 [connection signal="area_shape_entered" from="State Machine/Spin/Top" to="State Machine/Spin" method="StopShell"]
+[connection signal="area_entered" from="LeftDetector" to="State Machine/Idle" method="GoToRight"]
+[connection signal="body_entered" from="LeftDetector" to="State Machine/Spin" method="GoToRight"]
+[connection signal="area_entered" from="RightDetector" to="State Machine/Idle" method="GoToLeft"]
+[connection signal="body_entered" from="RightDetector" to="State Machine/Spin" method="GoToLeft"]

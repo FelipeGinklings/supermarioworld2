@@ -5,15 +5,14 @@ public partial class PlayerFall : PlayerState {
         player.animationPlayer.Play(FALL);
     }
 
-    public void HaveHitSomething(Area2D area) {
-        GD.Print($"Player: HaveHitSomething - Hit area: {area.Name} from parent: {area.GetParent().Name}");
-
-        // Check if we hit a Koopa
-        var koopa = area.GetParent() as CharacterBody2D;
-        if (koopa != null && koopa.Name == "Koopa") {
-            GD.Print("Player stomped on Koopa!");
-            // You can add stomp logic here
-        }
+    public void Stomp(Area2D area) {
+        // GD.Print($"Player: Stomp - Hit area: {area.Name} from parent: {area.GetParent().Name}");
+        // // Check if we hit a Koopa
+        // var koopa = area.GetParent() as CharacterBody2D;
+        // if (koopa != null && koopa.Name == "Koopa") {
+        //     GD.Print("Player stomped on Koopa!");
+        //     // You can add stomp logic here
+        // }
     }
 
     public override void PhysicsUpdate(double delta) {

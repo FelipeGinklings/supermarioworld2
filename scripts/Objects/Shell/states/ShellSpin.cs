@@ -4,10 +4,13 @@ using System;
 public partial class ShellSpin : ShellState {
     public override void Enter() {
         // Play the spin animation
+        GD.Print("ShellSpin: Enter");
         shell.animationShell.Play(shell.selectedColor + "-spin");
+        shell.ApplyImpulse(direction == WalkDirections.Left ? Vector2.Left * shell.speed * shell.initialImpulse : Vector2.Right * shell.speed * shell.initialImpulse);
     }
 
     public void StopShell(RigidBody2D area_rid, Area2D area, int area_shape_index, int local_shape_index) {
+        GD.Print("ShellSpin: StopShell");
         EmitSignal(State.SignalName.Transitioned, this, IDLE);
     }
 
@@ -18,15 +21,27 @@ public partial class ShellSpin : ShellState {
         EmitSignal(State.SignalName.Transitioned, this, IDLE);
     }
 
+
+    public void GoToLeft(Node2D body) {
+        GD.Print("ShellSpin: GoToLeft from Body - " + body.Name);
+        direction = WalkDirections.Left;
+    }
+
+    public void GoToRight(Node2D body) {
+        GD.Print("ShellSpin: GoToRight from Body - " + body.Name);
+        direction = WalkDirections.Right;
+    }
+
     public override void PhysicsUpdate(double delta) {
-        // Apply a constant force to keep the shell spinning
-        Vector2 force = direction == WalkDirections.Left ? Vector2.Left : Vector2.Right;
-        shell.ApplyForce(force * shell.speed * 50);
+        shell.LinearVelocity = new Vector2(shell.speed, shell.LinearVelocity.Y); // Move right with speed 200
+        shell.LinearVelocity = new Vector2(shell.speed * (direction == WalkDirections.Right ? 1 : -1), shell.LinearVelocity.Y); // Set direction based on the current state
+        shell.MoveAndCollide(shell.LinearVelocity * (float)delta);
     }
 
 
     public override void Exit() {
         // Stop the spin animation
+        GD.Print("ShellSpin: Exit");
         shell.animationShell.Stop();
     }
 }
