@@ -9,26 +9,26 @@ public partial class ShellSpin : ShellState {
         shell.ApplyImpulse(direction == WalkDirections.Left ? Vector2.Left * shell.speed * shell.initialImpulse : Vector2.Right * shell.speed * shell.initialImpulse);
     }
 
-    public void StopShell(RigidBody2D area_rid, Area2D area, int area_shape_index, int local_shape_index) {
-        GD.Print("ShellSpin: StopShell");
+    public void GoToIdle(Area2D _) {
+        GD.Print("ShellSpin: GoToIdle");
         EmitSignal(State.SignalName.Transitioned, this, IDLE);
     }
 
-    public void Kill(Node body) {
+    public void Kill(Node _) {
         // Implement logic for killing the shell if needed
         // This could involve removing the shell from the scene or changing its state
-        GD.Print("Shell killed " + body.Name);
-        EmitSignal(State.SignalName.Transitioned, this, IDLE);
+        // GD.Print("Shell killed " + body.Name);
+        // EmitSignal(State.SignalName.Transitioned, this, IDLE);
     }
 
 
-    public void GoToLeft(Node2D body) {
-        GD.Print("ShellSpin: GoToLeft from Body - " + body.Name);
+    public void GoToLeft(Node2D _) {
+        // GD.Print("ShellSpin: GoToLeft from Body - " + body.Name);
         direction = WalkDirections.Left;
     }
 
-    public void GoToRight(Node2D body) {
-        GD.Print("ShellSpin: GoToRight from Body - " + body.Name);
+    public void GoToRight(Node2D _) {
+        // GD.Print("ShellSpin: GoToRight from Body - " + body.Name);
         direction = WalkDirections.Right;
     }
 

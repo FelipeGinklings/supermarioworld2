@@ -3098,7 +3098,7 @@ tile_set = SubResource("TileSet_mxtig")
 
 [node name="Player" parent="." instance=ExtResource("2_klq6b")]
 z_index = 4
-position = Vector2(4279, 115)
+position = Vector2(4248, 82)
 collision_mask = 6
 
 [node name="ParallaxBackground" type="Node2D" parent="."]
