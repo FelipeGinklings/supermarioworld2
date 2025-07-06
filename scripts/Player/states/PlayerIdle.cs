@@ -15,11 +15,11 @@ public partial class PlayerIdle : PlayerState {
         player.MoveAndSlide();
 
         if (!player.IsOnFloor()) {
-            EmitSignal(SignalName.Transitioned, this, FALL);
+            EmitSignal(State.SignalName.Transitioned, this, FALL);
         } else if (Input.IsActionJustPressed(INPUT_JUMP)) {
-            EmitSignal(SignalName.Transitioned, this, JUMP);
+            EmitSignal(State.SignalName.Transitioned, this, JUMP);
         } else if (direction.X != 0) {
-            EmitSignal(SignalName.Transitioned, this, WALK);
+            EmitSignal(State.SignalName.Transitioned, this, WALK);
         } else if (direction.Y > 0) {
             player.animationPlayer.Play(LOOK_UP);
         } else if (direction.Y < 0) {

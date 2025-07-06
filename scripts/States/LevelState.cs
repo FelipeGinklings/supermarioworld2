@@ -1,15 +1,12 @@
-using Godot;
-using System;
+public partial class LevelState : State {
+    public const string VICTORY = "victory";
+    public const string PLAYING = "playing";
+    public const string GAME_OVER = "game-over";
 
-public partial class LevelState : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    protected Level gameLevel;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready() {
+        gameLevel = Owner as Level;
+        System.Diagnostics.Debug.Assert(gameLevel != null, "The LevelState state type must be used only in the level scene. It needs the owner to be a Level node.");
+    }
 }

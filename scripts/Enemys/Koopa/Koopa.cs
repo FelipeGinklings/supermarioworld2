@@ -1,5 +1,6 @@
-using System;
+
 using Godot;
+using Godot.Collections;
 
 public partial class Koopa : CharacterBody2D {
     public enum KoopaColor { Red, Green }
@@ -7,4 +8,14 @@ public partial class Koopa : CharacterBody2D {
     [Export] public AnimatedSprite2D animationKoopa;
     public float speed = 50.0f;
     public float jumpVelocity = -400.0f;
+
+    public const string GREEN = "green";
+    public const string RED = "red";
+
+    private static readonly Dictionary<KoopaColor, string> colors = new() {
+        { KoopaColor.Red, RED },
+        { KoopaColor.Green, GREEN }
+    };
+
+    public string selectedColor => colors[Color];
 }

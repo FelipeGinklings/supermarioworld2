@@ -280,7 +280,7 @@ position = Vector2(-1.5, 5)
 shape = SubResource("RectangleShape2D_pf23h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -62)
+position = Vector2(-20, -50)
 limit_left = -10
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]

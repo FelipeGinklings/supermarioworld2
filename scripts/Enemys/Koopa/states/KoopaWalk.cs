@@ -12,7 +12,7 @@ public partial class KoopaWalk : KoopaState {
     private WalkDirections direction = WalkDirections.Left;
 
     public override void Enter() {
-        koopa.animationKoopa.Play(selectedColor + "-" + WALK);
+        koopa.animationKoopa.Play(koopa.selectedColor + "-" + WALK);
     }
 
     public override void PhysicsUpdate(double delta) {
@@ -41,13 +41,13 @@ public partial class KoopaWalk : KoopaState {
         koopa.animationKoopa.Stop();
         var shouldFlip = direction == WalkDirections.Left;
         if (shouldFlip) {
-            koopa.animationKoopa.Play(selectedColor + TURN + RIGHT);
+            koopa.animationKoopa.Play(koopa.selectedColor + TURN + RIGHT);
             direction = WalkDirections.Right;
         } else {
-            koopa.animationKoopa.Play(selectedColor + TURN + LEFT);
+            koopa.animationKoopa.Play(koopa.selectedColor + TURN + LEFT);
             direction = WalkDirections.Left;
         }
-        koopa.animationKoopa.Play(selectedColor + "-" + WALK);
+        koopa.animationKoopa.Play(koopa.selectedColor + "-" + WALK);
         koopa.animationKoopa.FlipH = shouldFlip;
     }
 }

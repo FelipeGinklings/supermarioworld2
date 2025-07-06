@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://dspmsebbxvlh7"]
+
+[ext_resource type="PackedScene" uid="uid://c80568tad8h8" path="res://scenes/collision.tscn" id="1_537c5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u4y25"]
+load_path = "res://.godot/imported/cherry-1.png-7c27b9caacf3482612cb6f47a0961eee.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_itt4e"]
+load_path = "res://.godot/imported/cherry-2.png-ee65e512523b5df63732f9f0ded49c1c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t72mi"]
+load_path = "res://.godot/imported/cherry-3.png-bf064bae2242e46f7320952b079b8e08.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6fbh3"]
+load_path = "res://.godot/imported/cherry-4.png-5bec42aaa5eb275c561a7da8a56a6d27.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e0ntu"]
+load_path = "res://.godot/imported/cherry-5.png-ea828d77db9f91271265c85b27f8deae.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gkon2"]
+load_path = "res://.godot/imported/cherry-6.png-261c2ff91f5f753c14cad0018187da39.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qrl60"]
+load_path = "res://.godot/imported/cherry-7.png-4d5743f66fbdf8bf3baff35206156be5.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35lts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_u4y25")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_itt4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_t72mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_6fbh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_e0ntu")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_gkon2")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_qrl60")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cheery" type="Node2D"]
+
+[node name="Area2D2" parent="." instance=ExtResource("1_537c5")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(18, 16)
+sprite_frames = SubResource("SpriteFrames_35lts")
+frame_progress = 0.989141

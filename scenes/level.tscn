@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=4 uid="uid://dyqrvx3n1aeck"]
+[gd_scene load_steps=15 format=4 uid="uid://dyqrvx3n1aeck"]
 
 [ext_resource type="Texture2D" uid="uid://dhsykoy4cvnh0" path="res://assets/yoshi_island_map.png" id="1_2r41h"]
+[ext_resource type="Script" uid="uid://b5cwvnx6y6vg0" path="res://scripts/Level/Level.cs" id="1_olg7q"]
 [ext_resource type="PackedScene" uid="uid://qv0rwaaiawql" path="res://scenes/player.tscn" id="2_klq6b"]
 [ext_resource type="Texture2D" uid="uid://0in4vh8ngoid" path="res://assets/background.png" id="3_b121j"]
-[ext_resource type="Script" uid="uid://cxmtl4ycdydwx" path="res://scripts/Koopas.cs" id="4_8c41q"]
+[ext_resource type="Script" uid="uid://cxmtl4ycdydwx" path="res://scripts/Enemys/Koopas.cs" id="4_8c41q"]
 [ext_resource type="PackedScene" uid="uid://c2l46wkmkylha" path="res://scenes/koopa.tscn" id="5_olg7q"]
 [ext_resource type="Script" uid="uid://ccm0vbsu0k4q" path="res://scripts/States/StateMachine.cs" id="6_t1rx8"]
-[ext_resource type="Script" uid="uid://cnkqik0ytsj6q" path="res://scripts/Level/Playing.cs" id="7_8c41q"]
-[ext_resource type="Script" uid="uid://bk2fcuvdwk7kt" path="res://scripts/Level/GameOver.cs" id="8_olg7q"]
-[ext_resource type="Script" uid="uid://bis4tiex1e00m" path="res://scripts/Level/Victory.cs" id="9_t1rx8"]
+[ext_resource type="Script" uid="uid://cnkqik0ytsj6q" path="res://scripts/Level/states/Playing.cs" id="7_8c41q"]
+[ext_resource type="Script" uid="uid://j6s80ahccg3t" path="res://scripts/End.cs" id="7_t1rx8"]
+[ext_resource type="Script" uid="uid://bk2fcuvdwk7kt" path="res://scripts/Level/states/GameOver.cs" id="8_olg7q"]
+[ext_resource type="Script" uid="uid://bis4tiex1e00m" path="res://scripts/Level/states/Victory.cs" id="9_t1rx8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jcsj"]
 texture = ExtResource("1_2r41h")
@@ -3083,7 +3085,10 @@ sources/0 = SubResource("TileSetAtlasSource_8jcsj")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jcsj"]
 size = Vector2(17.75, 144.5)
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("GameTimer")]
+script = ExtResource("1_olg7q")
+GameTimer = NodePath("Time")
+metadata/_edit_group_ = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-714, 259)
@@ -3092,7 +3097,7 @@ tile_set = SubResource("TileSet_mxtig")
 
 [node name="Player" parent="." instance=ExtResource("2_klq6b")]
 z_index = 4
-position = Vector2(440, 112)
+position = Vector2(4737, 118)
 
 [node name="ParallaxBackground" type="Node2D" parent="."]
 
@@ -3118,14 +3123,16 @@ position = Vector2(1760, 104)
 
 [node name="End" type="Area2D" parent="."]
 collision_layer = 0
+script = ExtResource("7_t1rx8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End"]
 light_mask = 0
 position = Vector2(4830.12, 59.25)
 shape = SubResource("RectangleShape2D_8jcsj")
 
-[node name="State Machine" type="Node" parent="."]
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("6_t1rx8")
+InitialState = NodePath("Playing")
 
 [node name="Playing" type="Node" parent="State Machine"]
 script = ExtResource("7_8c41q")
@@ -3135,3 +3142,9 @@ script = ExtResource("8_olg7q")
 
 [node name="Victory" type="Node" parent="State Machine"]
 script = ExtResource("9_t1rx8")
+
+[node name="Time" type="Timer" parent="."]
+wait_time = 300.0
+autostart = true
+
+[connection signal="body_entered" from="End" to="End" method="OnBodyEntered"]
