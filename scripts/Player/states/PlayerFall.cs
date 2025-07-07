@@ -10,11 +10,12 @@ public partial class PlayerFall : PlayerState {
     }
 
     public void Stomp(Area2D area) {
-        // // Check if we hit a Shell's Top area
-        // if (area.Name == "Top" && area.GetParent() is Shell) {
-        //     isStomping = true;
-        //     remainingTime = 0.11f;
-        // }
+        // GD.Print("PlayerFall: Stomped on " + area.Name);
+        // Check if we hit a Shell's Top area
+        if (area.Name == "Top" && area.GetParent() is Shell) {
+            isStomping = true;
+            remainingTime = 0.11f;
+        }
     }
 
     public override void PhysicsUpdate(double delta) {
@@ -33,7 +34,6 @@ public partial class PlayerFall : PlayerState {
             isStomping = false; // Reset stomping state after jumping
         }
         remainingTime -= (float)delta;
-        // if (!isStomping) {
         player.animationPlayer.Play(FALL);
         float inputDirectionX = Input.GetAxis(INPUT_LEFT, INPUT_RIGHT);
         player.Velocity = new Vector2(player.speed * inputDirectionX, player.Velocity.Y + player.GetGravity().Y * (float)delta);
@@ -46,6 +46,5 @@ public partial class PlayerFall : PlayerState {
                 EmitSignal(State.SignalName.Transitioned, this, WALK);
             }
         }
-        // }
     }
 }

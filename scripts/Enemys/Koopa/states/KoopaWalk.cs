@@ -41,7 +41,7 @@ public partial class KoopaWalk : KoopaState {
     }
 
     public void GotHit(Area2D _) {
-        GD.Print("KoopaWalk: GotHit");
+        // GD.Print("KoopaWalk: GotHit");
         koopa.SetPhysicsProcess(false);
         EmitSignal(State.SignalName.Transitioned, this, SEPARATE);
     }

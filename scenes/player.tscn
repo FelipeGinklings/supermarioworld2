@@ -255,10 +255,10 @@ animations = [{
 size = Vector2(16, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf23h"]
-size = Vector2(12.3839, 0.398426)
+size = Vector2(12.3839, 0.796851)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
-collision_mask = 0
+collision_mask = 135
 script = ExtResource("1_pf23h")
 animationPlayer = NodePath("AnimatedSprite2D")
 metadata/_edit_group_ = true
@@ -308,7 +308,7 @@ collision_layer = 64
 collision_mask = 288
 
 [node name="PlayerFoot" type="CollisionShape2D" parent="PlayerFoot"]
-position = Vector2(-8, 6)
+position = Vector2(-8, 7)
 rotation = 3.14159
 scale = Vector2(1.292, -5.01976)
 shape = SubResource("RectangleShape2D_pf23h")

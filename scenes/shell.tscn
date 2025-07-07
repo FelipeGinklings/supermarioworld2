@@ -140,15 +140,15 @@ animations = [{
 [node name="Shell" type="RigidBody2D" node_paths=PackedStringArray("animationShell")]
 z_index = 2
 collision_layer = 128
-collision_mask = 4
+collision_mask = 135
 script = ExtResource("1_k7uw7")
 animationShell = NodePath("AnimatedSprite2D")
 
 [node name="Death" type="CollisionPolygon2D" parent="."]
-position = Vector2(-3.73248e-07, 4.76837e-07)
+position = Vector2(2.84217e-14, 0)
 rotation = 3.14159
 scale = Vector2(0.460992, -0.747105)
-polygon = PackedVector2Array(6.50767, -8.03101, 17.3539, 1.33847, 17.3539, 10.708, -17.3538, 10.708, -17.3539, 1.33853, -6.50774, -8.03099)
+polygon = PackedVector2Array(8.67691, -8.03101, 17.3539, 1.33847, 17.3539, 10.708, -17.3538, 10.708, -17.3539, 2.65085e-05, -10.8462, -8.03098)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -172,7 +172,7 @@ collision_mask = 68
 
 [node name="LeftCollision" type="CollisionPolygon2D" parent="LeftDetector"]
 scale = Vector2(0.573301, 0.625208)
-polygon = PackedVector2Array(0, -12.7957, -5.23285, -12.7957, -15.6986, 1.59947, -15.6986, 11.1963, 0, 11.1963)
+polygon = PackedVector2Array(0, -12.7957, -6.97714, -12.7957, -15.6986, 1.59947, -15.6986, 11.1963, 0, 11.1963)
 
 [node name="RightDetector" type="Area2D" parent="."]
 collision_layer = 256
@@ -181,18 +181,18 @@ collision_mask = 68
 [node name="RightCollision" type="CollisionPolygon2D" parent="RightDetector"]
 position = Vector2(11, -8)
 scale = Vector2(0.643746, 0.602069)
-polygon = PackedVector2Array(-17.0875, 24.9141, -3.10682, 24.9141, -3.10682, 13.2875, -12.4273, 0, -17.0875, 0)
+polygon = PackedVector2Array(-17.0875, 24.9141, -3.10682, 24.9141, -3.10682, 13.2875, -9.32045, 1.66094, -17.0875, 1.66094)
 
 [node name="Top" type="Area2D" parent="."]
 self_modulate = Color(0, 1, 1, 1)
 collision_layer = 256
-collision_mask = 64
+collision_mask = 65
 
 [node name="TopCollision" type="CollisionPolygon2D" parent="Top"]
 modulate = Color(0.286953, 0.999069, 0.918662, 1)
 position = Vector2(7, -9)
 scale = Vector2(0.414409, 0.362487)
-polygon = PackedVector2Array(-19.3046, 46.8982, -14.4785, 46.8982, -7.23923, -2.75872, -26.5438, -2.75872)
+polygon = PackedVector2Array(-31.37, 16.5523, -2.41308, 16.5523, -4.82615, 2.75872, -26.5438, 2.75872)
 
 [connection signal="body_entered" from="." to="State Machine/Spin" method="Kill"]
 [connection signal="area_entered" from="LeftDetector" to="State Machine/Idle" method="GoToRight"]

@@ -9,7 +9,7 @@ public partial class PlayerIdle : PlayerState {
     }
 
     public void GotHit(Node2D _body) {
-        GD.Print("KoopaWalk: GotHit");
+        // GD.Print("KoopaWalk: GotHit");
         gotHit = true;
     }
     public override void PhysicsUpdate(double delta) {

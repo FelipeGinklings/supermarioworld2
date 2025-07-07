@@ -4,7 +4,7 @@ using System;
 public partial class KoopaSeparate : KoopaState {
 
     public override void Enter() {
-        GD.Print("KoopaSeparate: Entering state");
+        // GD.Print("KoopaSeparate: Entering state");
         // Use CallDeferred to avoid physics query flushing issues
         CallDeferred(nameof(PerformSeparation));
     }
