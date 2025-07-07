@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://qv0rwaaiawql"]
+[gd_scene load_steps=39 format=3 uid="uid://qv0rwaaiawql"]
 
 [ext_resource type="Script" uid="uid://cybuwmbcegwkb" path="res://scripts/Player/Player.cs" id="1_pf23h"]
 [ext_resource type="Texture2D" uid="uid://ds6oy28c4wye5" path="res://assets/characters/mario/small/idle-look-up-duck-walk-run-skid.png" id="2_g2els"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b7arll68ak2j0" path="res://scripts/Player/states/PlayerFall.cs" id="9_ur7pv"]
 [ext_resource type="Script" uid="uid://x3a83pppegg7" path="res://scripts/Player/states/PlayerVictory.cs" id="10_y4r1p"]
 [ext_resource type="Script" uid="uid://b5ptvnwtobvv3" path="res://scripts/Player/PlayerCamera.cs" id="11_camera"]
+[ext_resource type="Script" uid="uid://cq4pm3ack3f3s" path="res://scripts/Player/states/PlayerClimb.cs" id="12_3v2ag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_qhqgy")
@@ -269,7 +270,7 @@ visibility_layer = 3
 texture_filter = 1
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"run"
+animation = &"climb"
 
 [node name="Player" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
@@ -302,6 +303,9 @@ script = ExtResource("9_ur7pv")
 [node name="Victory" type="Node" parent="State Machine"]
 script = ExtResource("10_y4r1p")
 
+[node name="Climbing" type="Node" parent="State Machine"]
+script = ExtResource("12_3v2ag")
+
 [node name="PlayerFoot" type="Area2D" parent="."]
 position = Vector2(7, 5)
 collision_layer = 64
@@ -312,6 +316,13 @@ position = Vector2(-8, 7)
 rotation = 3.14159
 scale = Vector2(1.292, -5.01976)
 shape = SubResource("RectangleShape2D_pf23h")
+
+[node name="PlayerHead" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerHead"]
+polygon = PackedVector2Array(-9, -9, 7, -9, 7, -7, -9, -7)
 
 [connection signal="area_entered" from="PlayerFoot" to="State Machine/Walk" method="Kick"]
 [connection signal="area_entered" from="PlayerFoot" to="State Machine/Fall" method="Stomp"]

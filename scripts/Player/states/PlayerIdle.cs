@@ -3,6 +3,7 @@ using Godot;
 
 public partial class PlayerIdle : PlayerState {
     private bool gotHit = false;
+    private bool inStair = false;
     public override void Enter() {
         player.Velocity = new Vector2(0.0f, player.Velocity.Y);
         player.animationPlayer.Play(IDLE);
@@ -11,6 +12,10 @@ public partial class PlayerIdle : PlayerState {
     public void GotHit(Node2D _body) {
         // GD.Print("KoopaWalk: GotHit");
         gotHit = true;
+    }
+
+    public void InStair(Area2D area) {
+        inStair = true;
     }
     public override void PhysicsUpdate(double delta) {
         if (player.ReachedTheEnd) {
@@ -29,7 +34,11 @@ public partial class PlayerIdle : PlayerState {
         } else if (direction.X != 0) {
             EmitSignal(State.SignalName.Transitioned, this, WALK);
         } else if (direction.Y < 0) {
-            player.animationPlayer.Play(LOOK_UP);
+            if (inStair) {
+                EmitSignal(State.SignalName.Transitioned, this, CLIMB);
+            } else {
+                player.animationPlayer.Play(LOOK_UP);
+            }
         } else if (direction.Y > 0) {
             player.animationPlayer.Play(DUCK);
         } else {
