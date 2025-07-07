@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dyqrvx3n1aeck"]
+[gd_scene load_steps=17 format=4 uid="uid://dyqrvx3n1aeck"]
 
 [ext_resource type="Texture2D" uid="uid://dhsykoy4cvnh0" path="res://assets/yoshi_island_map.png" id="1_2r41h"]
 [ext_resource type="Script" uid="uid://b5cwvnx6y6vg0" path="res://scripts/Level/Level.cs" id="1_olg7q"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://qsb554f2lsuu" path="res://scripts/Level/states/LevelGameOver.cs" id="8_olg7q"]
 [ext_resource type="Script" uid="uid://b565ivuxegior" path="res://scripts/Level/states/LevelVictory.cs" id="9_t1rx8"]
 [ext_resource type="PackedScene" uid="uid://cjop146wh16vr" path="res://scenes/stairs.tscn" id="11_t1rx8"]
+[ext_resource type="PackedScene" uid="uid://bpmxgefdkc2dv" path="res://scenes/shell.tscn" id="12_64w2a"]
+[ext_resource type="PackedScene" uid="uid://dq6rdk88jsi3y" path="res://scenes/grub.tscn" id="13_fpun6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jcsj"]
 texture = ExtResource("1_2r41h")
@@ -69,8 +71,8 @@ texture = ExtResource("1_2r41h")
 199:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -2.5686, -8, -2.45692)
 199:16/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 200:16/0 = 0
-200:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -2.5686, -8, -2.45692)
-200:16/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+200:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+200:16/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, 2.76982, 8, 2.76982, 8, 8, -8, 8)
 281:16/0 = 0
 281:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -2.5686, -8, -2.45692)
 281:16/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -3184,6 +3186,7 @@ script = ExtResource("9_t1rx8")
 wait_time = 300.0
 
 [node name="Stairs" parent="." instance=ExtResource("11_t1rx8")]
+position = Vector2(3198, 11)
 
 [node name="StairsEnd" type="Area2D" parent="."]
 collision_layer = 512
@@ -3192,7 +3195,48 @@ collision_mask = 2048
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StairsEnd"]
 polygon = PackedVector2Array(3190, -237, 3206, -237, 3206, -253, 3190, -253)
 
+[node name="ExitedStairs" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 9281
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExitedStairs"]
+polygon = PackedVector2Array(3190, -237, 3177, -237, 3176, 3, 3172, 3, 3173, -267, 3226, -267, 3226, 3, 3221, 3, 3220, -237, 3206, -237, 3206, -253, 3190, -253)
+
+[node name="Koopa" parent="." instance=ExtResource("5_olg7q")]
+position = Vector2(3256, 113)
+
+[node name="Koopa2" parent="." instance=ExtResource("5_olg7q")]
+position = Vector2(2164, 27)
+
+[node name="Shell" parent="." instance=ExtResource("12_64w2a")]
+position = Vector2(2486, 73)
+
+[node name="Shell2" parent="." instance=ExtResource("12_64w2a")]
+position = Vector2(2583, 87)
+
+[node name="Koopa3" parent="." instance=ExtResource("5_olg7q")]
+position = Vector2(3093, 10)
+
+[node name="Koopa4" parent="." instance=ExtResource("5_olg7q")]
+position = Vector2(3475, 23)
+
+[node name="Koopa5" parent="." instance=ExtResource("5_olg7q")]
+position = Vector2(3981, 98)
+
+[node name="Koopa6" parent="." instance=ExtResource("5_olg7q")]
+position = Vector2(4206, 100)
+
+[node name="Koopa7" parent="." instance=ExtResource("5_olg7q")]
+position = Vector2(4566, 107)
+
+[node name="Grub" parent="." instance=ExtResource("13_fpun6")]
+position = Vector2(4503, 118)
+
+[node name="Koopa8" parent="." instance=ExtResource("5_olg7q")]
+position = Vector2(4679, 107)
+
 [connection signal="body_entered" from="End" to="Player" method="FinishLine"]
 [connection signal="body_entered" from="End" to="State Machine/Playing" method="FinishLine"]
 [connection signal="area_entered" from="Stairs" to="Stairs" method="StartStairs"]
 [connection signal="area_entered" from="StairsEnd" to="Stairs" method="EndStairs"]
+[connection signal="area_entered" from="ExitedStairs" to="." method="ExitedStairs"]

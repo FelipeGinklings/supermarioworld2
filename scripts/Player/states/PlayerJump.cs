@@ -15,7 +15,10 @@ public partial class PlayerJump : PlayerState {
         player.MoveAndSlide();
 
         if (player.Velocity.Y >= 0) {
-            EmitSignal(SignalName.Transitioned, this, FALL);
+            if (player.IsOnStairs) {
+                EmitSignal(State.SignalName.Transitioned, this, CLIMB);
+            }
+            EmitSignal(State.SignalName.Transitioned, this, FALL);
         }
     }
 }

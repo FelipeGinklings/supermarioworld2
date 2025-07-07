@@ -5,7 +5,7 @@ public partial class CreateStairs : Area2D {
 
     [Export] Area2D head2d, stair2d;
     [Export] public AnimatedSprite2D animationHead;
-    [Export] public float stairSpacing = 16.0f; // Espaçamento entre escadas
+    [Export] public float stairSpacing = 15.0f; // Espaçamento entre escadas
     [Export] public float headSpeed = 50.0f; // Velocidade do movimento do cabeçalho
     private bool isBuilding = false;
     private float count = 0f;
@@ -16,7 +16,7 @@ public partial class CreateStairs : Area2D {
             Vector2 currentPos = head2d.GlobalPosition;
             Vector2 newPos = new Vector2(currentPos.X, currentPos.Y - 1f);
             head2d.GlobalPosition = newPos;
-            if (count >= 16) {
+            if (count >= stairSpacing) {
                 count = 0; // Resetar o contador                    
                 Area2D newStair = stair2d.Duplicate() as Area2D;
                 var nextStairY = currentPos.Y; // Calcular a nova posição Y da escada

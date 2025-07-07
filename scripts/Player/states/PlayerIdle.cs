@@ -15,7 +15,8 @@ public partial class PlayerIdle : PlayerState {
     }
 
     public void InStair(Area2D area) {
-        inStair = true;
+        GD.Print("PlayerIdle: InStair");
+        player.IsOnStairs = true;
     }
     public override void PhysicsUpdate(double delta) {
         if (player.ReachedTheEnd) {
@@ -34,7 +35,7 @@ public partial class PlayerIdle : PlayerState {
         } else if (direction.X != 0) {
             EmitSignal(State.SignalName.Transitioned, this, WALK);
         } else if (direction.Y < 0) {
-            if (inStair) {
+            if (player.IsOnStairs) {
                 EmitSignal(State.SignalName.Transitioned, this, CLIMB);
             } else {
                 player.animationPlayer.Play(LOOK_UP);

@@ -24,6 +24,9 @@ public partial class PlayerFall : PlayerState {
             EmitSignal(State.SignalName.Transitioned, this, VICTORY);
             return;
         }
+        if (player.IsOnStairs) {
+            EmitSignal(State.SignalName.Transitioned, this, CLIMB);
+        }
         if (isStomping && remainingTime > 0 && Input.IsActionJustPressed(INPUT_JUMP)) {
             player.animationPlayer.Play(JUMP);
             player.Velocity = new Vector2(player.Velocity.X, player.maxJump); // Bounce with 60% of normal jump force

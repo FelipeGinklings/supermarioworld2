@@ -264,6 +264,14 @@ script = ExtResource("1_pf23h")
 animationPlayer = NodePath("AnimatedSprite2D")
 metadata/_edit_group_ = true
 
+[node name="ExitStairs" type="Area2D" parent="."]
+position = Vector2(0, 2)
+collision_layer = 9281
+collision_mask = 16384
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExitStairs"]
+polygon = PackedVector2Array(-9, -7, 7, -7, 7, 12, -9, 12)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 3
 visibility_layer = 3
@@ -303,7 +311,7 @@ script = ExtResource("9_ur7pv")
 [node name="Victory" type="Node" parent="State Machine"]
 script = ExtResource("10_y4r1p")
 
-[node name="Climbing" type="Node" parent="State Machine"]
+[node name="Climb" type="Node" parent="State Machine"]
 script = ExtResource("12_3v2ag")
 
 [node name="PlayerFoot" type="Area2D" parent="."]
@@ -324,5 +332,15 @@ collision_mask = 512
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerHead"]
 polygon = PackedVector2Array(-9, -9, 7, -9, 7, -7, -9, -7)
 
+[node name="DetectStair" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 8192
+collision_mask = 4096
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectStair"]
+polygon = PackedVector2Array(-9, -7, 7, -7, 7, 12, -9, 12)
+
+[connection signal="area_entered" from="ExitStairs" to="." method="ExitedStairs"]
 [connection signal="area_entered" from="PlayerFoot" to="State Machine/Walk" method="Kick"]
 [connection signal="area_entered" from="PlayerFoot" to="State Machine/Fall" method="Stomp"]
+[connection signal="area_entered" from="DetectStair" to="State Machine/Idle" method="InStair"]

@@ -6,6 +6,13 @@ public partial class Player : CharacterBody2D {
     [Export] public AnimatedSprite2D animationPlayer;
 
     public bool ReachedTheEnd;
+    public bool IsOnStairs = false;
+
+    public void ExitedStairs() {
+        GD.Print("Player: ExitedStairs");
+        IsOnStairs = false;
+    }
+
 
     private void FinishLine(Node _body) {
         ReachedTheEnd = true;
