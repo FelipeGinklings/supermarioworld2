@@ -138,17 +138,17 @@ InitialState = NodePath("Walk")
 [node name="Walk" type="Node" parent="State Machine"]
 script = ExtResource("6_grttc")
 
-[node name="HitBox" type="Area2D" parent="State Machine/Walk"]
+[node name="Separate" type="Node" parent="State Machine"]
+script = ExtResource("7_vo5xu")
+
+[node name="Top" type="Area2D" parent="."]
 scale = Vector2(1, 1.08)
 collision_layer = 32
 collision_mask = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Walk/HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
 position = Vector2(0, -9.25926)
 scale = Vector2(0.951119, 24.6387)
 shape = SubResource("RectangleShape2D_vo5xu")
 
-[node name="Separate" type="Node" parent="State Machine"]
-script = ExtResource("7_vo5xu")
-
-[connection signal="area_entered" from="State Machine/Walk/HitBox" to="State Machine/Walk" method="GotHit"]
+[connection signal="area_entered" from="Top" to="State Machine/Walk" method="GotHit"]

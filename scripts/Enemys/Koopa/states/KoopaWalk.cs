@@ -40,7 +40,7 @@ public partial class KoopaWalk : KoopaState {
         koopa.animationKoopa.FlipH = shouldFlip;
     }
 
-    public void GotHit(Area2D _area) {
+    public void GotHit(Area2D _) {
         GD.Print("KoopaWalk: GotHit");
         koopa.SetPhysicsProcess(false);
         EmitSignal(State.SignalName.Transitioned, this, SEPARATE);

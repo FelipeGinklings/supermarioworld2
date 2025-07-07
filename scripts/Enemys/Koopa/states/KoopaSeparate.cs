@@ -10,14 +10,18 @@ public partial class KoopaSeparate : KoopaState {
     }
 
     private void PerformSeparation() {
-        GetTree().CreateTimer(0.15f).Timeout += () => {
+        GetTree().CreateTimer(0.11f).Timeout += () => {
             Node parent = koopa.GetParent();
             Vector2 koopaPosition = koopa.GlobalPosition;
             koopa.QueueFree();
             PackedScene grubScene = GD.Load<PackedScene>("res://scenes/grub.tscn");
+            PackedScene shellScene = GD.Load<PackedScene>("res://scenes/shell.tscn");
             Node grubInstance = grubScene.Instantiate();
-            ((Node2D)grubInstance).GlobalPosition = koopaPosition;
+            Node shellInstance = shellScene.Instantiate();
+            ((Node2D)grubInstance).GlobalPosition = koopaPosition + Vector2.Right * 20;
             parent.AddChild(grubInstance);
+            ((Node2D)shellInstance).GlobalPosition = koopaPosition + Vector2.Left * 20;
+            parent.AddChild(shellInstance);
         };
     }
 

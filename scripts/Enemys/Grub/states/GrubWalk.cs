@@ -41,6 +41,6 @@ public partial class GrubWalk : GrubState {
     private void ToggleKoopaDirection() {
         direction = direction == WalkDirections.Left ? WalkDirections.Right : WalkDirections.Left;
         grub.animationGrub.Play(grub.selectedColor + "-" + WALK);
-        grub.animationGrub.FlipH = direction == WalkDirections.Left; ;
+        grub.animationGrub.FlipH = direction == WalkDirections.Right; ;
     }
 }

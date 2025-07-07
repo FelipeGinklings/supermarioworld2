@@ -1,13 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://bpmxgefdkc2dv"]
+[gd_scene load_steps=21 format=3 uid="uid://bpmxgefdkc2dv"]
 
 [ext_resource type="Texture2D" uid="uid://cspp3bwp4bs6x" path="res://assets/enemys/shell/rotate-empty/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="1_bo4bk"]
 [ext_resource type="Script" uid="uid://cawwrk5vjurxc" path="res://scripts/Objects/Shell/Shell.cs" id="1_k7uw7"]
 [ext_resource type="Script" uid="uid://btvu1yif2qtry" path="res://scripts/Objects/Shell/states/ShellIdle.cs" id="3_k7uw7"]
 [ext_resource type="Script" uid="uid://ccm0vbsu0k4q" path="res://scripts/States/StateMachine.cs" id="3_qr86p"]
 [ext_resource type="Script" uid="uid://bra3p5kfrcf17" path="res://scripts/Objects/Shell/states/ShellSpin.cs" id="4_qr86p"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdvxk"]
-size = Vector2(34.7078, 21.416)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sb42f"]
 atlas = ExtResource("1_bo4bk")
@@ -147,12 +144,11 @@ collision_mask = 4
 script = ExtResource("1_k7uw7")
 animationShell = NodePath("AnimatedSprite2D")
 
-[node name="Death" type="CollisionShape2D" parent="."]
+[node name="Death" type="CollisionPolygon2D" parent="."]
 position = Vector2(-3.73248e-07, 4.76837e-07)
 rotation = 3.14159
 scale = Vector2(0.460992, -0.747105)
-shape = SubResource("RectangleShape2D_fdvxk")
-debug_color = Color(0.540368, 0.407265, 1, 0.42)
+polygon = PackedVector2Array(6.50767, -8.03101, 17.3539, 1.33847, 17.3539, 10.708, -17.3538, 10.708, -17.3539, 1.33853, -6.50774, -8.03099)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -196,7 +192,7 @@ collision_mask = 64
 modulate = Color(0.286953, 0.999069, 0.918662, 1)
 position = Vector2(7, -9)
 scale = Vector2(0.414409, 0.362487)
-polygon = PackedVector2Array(-28.9569, 11.0349, -28.9569, 46.8982, -4.82615, 46.8982, -4.82615, 11.0349, -9.6523, 2.75872, -24.1308, 2.75872)
+polygon = PackedVector2Array(-19.3046, 46.8982, -14.4785, 46.8982, -7.23923, -2.75872, -26.5438, -2.75872)
 
 [connection signal="body_entered" from="." to="State Machine/Spin" method="Kill"]
 [connection signal="area_entered" from="LeftDetector" to="State Machine/Idle" method="GoToRight"]

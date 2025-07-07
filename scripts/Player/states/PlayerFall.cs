@@ -5,14 +5,16 @@ public partial class PlayerFall : PlayerState {
     public float remainingTime = 0; // Time in seconds to allow jump input
     public override void Enter() {
         player.animationPlayer.Play(FALL);
+        isStomping = false;
+        remainingTime = 0.0f; // Reset remaining time when entering fall state
     }
 
     public void Stomp(Area2D area) {
-        // Check if we hit a Shell's Top area
-        if (area.Name == "Top" && area.GetParent() is Shell shell) {
-            isStomping = true;
-            remainingTime = 0.1f;
-        }
+        // // Check if we hit a Shell's Top area
+        // if (area.Name == "Top" && area.GetParent() is Shell) {
+        //     isStomping = true;
+        //     remainingTime = 0.11f;
+        // }
     }
 
     public override void PhysicsUpdate(double delta) {
@@ -31,19 +33,19 @@ public partial class PlayerFall : PlayerState {
             isStomping = false; // Reset stomping state after jumping
         }
         remainingTime -= (float)delta;
-        if (!isStomping) {
-            player.animationPlayer.Play(FALL);
-            float inputDirectionX = Input.GetAxis(INPUT_LEFT, INPUT_RIGHT);
-            player.Velocity = new Vector2(player.speed * inputDirectionX, player.Velocity.Y + player.GetGravity().Y * (float)delta);
-            player.MoveAndSlide();
+        // if (!isStomping) {
+        player.animationPlayer.Play(FALL);
+        float inputDirectionX = Input.GetAxis(INPUT_LEFT, INPUT_RIGHT);
+        player.Velocity = new Vector2(player.speed * inputDirectionX, player.Velocity.Y + player.GetGravity().Y * (float)delta);
+        player.MoveAndSlide();
 
-            if (player.IsOnFloor()) {
-                if (Mathf.IsEqualApprox(inputDirectionX, 0.0f)) {
-                    EmitSignal(State.SignalName.Transitioned, this, IDLE);
-                } else {
-                    EmitSignal(State.SignalName.Transitioned, this, WALK);
-                }
+        if (player.IsOnFloor()) {
+            if (Mathf.IsEqualApprox(inputDirectionX, 0.0f)) {
+                EmitSignal(State.SignalName.Transitioned, this, IDLE);
+            } else {
+                EmitSignal(State.SignalName.Transitioned, this, WALK);
             }
         }
+        // }
     }
 }

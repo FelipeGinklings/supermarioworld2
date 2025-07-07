@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public partial class GrubCreation : GrubState {
-    private float moveTime = 1.25f; // Tempo para mover para a direita (em segundos)
+    private float moveTime = 1f; // Tempo para mover para a direita (em segundos)
     private float currentMoveTime = 0.0f;
     private bool hasFinishedMoving = false;
     public override void Enter() {
