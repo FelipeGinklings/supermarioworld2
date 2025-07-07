@@ -2,11 +2,21 @@ using Godot;
 using System;
 
 public partial class GrupMerge : GrubState {
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready() {
+
+    public override void Enter() {
+        grub.animationGrub.Play(grub.selectedColor + "-" + MERGE);
+        CallDeferred(nameof(PerformMerge));
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) {
+    private void PerformMerge() {
+        GetTree().CreateTimer(0.5f).Timeout += () => {
+            Node parent = grub.GetParent();
+            Vector2 shellPosition = grub.GlobalPosition;
+            grub.QueueFree();
+            PackedScene koopaScene = GD.Load<PackedScene>("res://scenes/koopa.tscn");
+            Node koopaInstance = koopaScene.Instantiate();
+            ((Node2D)koopaInstance).GlobalPosition = shellPosition;
+            parent.AddChild(koopaInstance);
+        };
     }
 }

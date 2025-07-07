@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://dq6rdk88jsi3y"]
+[gd_scene load_steps=28 format=3 uid="uid://dq6rdk88jsi3y"]
 
 [ext_resource type="Script" uid="uid://ccfvjc1oi1e0j" path="res://scripts/Enemys/Grub/Grub.cs" id="1_jck51"]
 [ext_resource type="Texture2D" uid="uid://t0aqpqec04x4" path="res://assets/enemys/koopa/walk-kicked/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="2_iive0"]
 [ext_resource type="Script" uid="uid://ccm0vbsu0k4q" path="res://scripts/States/StateMachine.cs" id="3_l6wnq"]
+[ext_resource type="Texture2D" uid="uid://cspp3bwp4bs6x" path="res://assets/enemys/shell/rotate-empty/SNES - Super Mario World - Koopas & Masked Koopas copy-Sheet.png" id="3_oheme"]
 [ext_resource type="Script" uid="uid://fj315wgkn7u0" path="res://scripts/Enemys/Grub/states/GrubCreation.cs" id="4_oheme"]
 [ext_resource type="Script" uid="uid://b7vxbfha5sixf" path="res://scripts/Enemys/Grub/states/GrupMerge.cs" id="5_f4pdn"]
 [ext_resource type="Script" uid="uid://dyjhe6pchos6y" path="res://scripts/Enemys/Grub/states/GrubWalk.cs" id="6_k2k8t"]
@@ -24,6 +25,14 @@ region = Rect2(32, 32, 16, 16)
 atlas = ExtResource("2_iive0")
 region = Rect2(48, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6wnq"]
+atlas = ExtResource("3_oheme")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oheme"]
+atlas = ExtResource("3_oheme")
+region = Rect2(80, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xum81"]
 atlas = ExtResource("2_iive0")
 region = Rect2(32, 0, 16, 16)
@@ -43,6 +52,14 @@ region = Rect2(0, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5frmb"]
 atlas = ExtResource("2_iive0")
 region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4pdn"]
+atlas = ExtResource("3_oheme")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2k8t"]
+atlas = ExtResource("3_oheme")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqhx2"]
 atlas = ExtResource("2_iive0")
@@ -72,6 +89,23 @@ animations = [{
 "loop": true,
 "name": &"green-kicked",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6wnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oheme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6wnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oheme")
+}],
+"loop": true,
+"name": &"green-merge",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -105,6 +139,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_f4pdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2k8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4pdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2k8t")
+}],
+"loop": true,
+"name": &"red-merge",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_iqhx2")
 }, {
 "duration": 1.0,
@@ -133,8 +184,8 @@ shape = SubResource("RectangleShape2D_birhf")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qh4gb")
-animation = &"green-walk"
-frame_progress = 0.375559
+animation = &"green-death"
+frame_progress = 0.970277
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_l6wnq")
@@ -148,19 +199,7 @@ script = ExtResource("5_f4pdn")
 
 [node name="Walk" type="Node" parent="State Machine" node_paths=PackedStringArray("raycast")]
 script = ExtResource("6_k2k8t")
-raycast = NodePath("See Sheel")
-
-[node name="See Sheel" type="RayCast2D" parent="State Machine/Walk"]
-target_position = Vector2(-40, 0)
-collision_mask = 2
-
-[node name="HitBox" type="Area2D" parent="State Machine/Walk"]
-collision_layer = 32
-collision_mask = 64
-
-[node name="HitBox" type="CollisionShape2D" parent="State Machine/Walk/HitBox"]
-position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_iive0")
+raycast = NodePath("../../See Sheel")
 
 [node name="Death" type="Node" parent="State Machine"]
 script = ExtResource("7_ay8jv")
@@ -168,13 +207,26 @@ script = ExtResource("7_ay8jv")
 [node name="Wait" type="Node" parent="State Machine"]
 script = ExtResource("8_iive0")
 
-[node name="WaitHitBox" type="Area2D" parent="State Machine/Wait"]
+[node name="Top" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="State Machine/Wait/WaitHitBox"]
+[node name="HitBox" type="CollisionShape2D" parent="Top"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_iive0")
+
+[node name="See Sheel" type="RayCast2D" parent="."]
+scale = Vector2(0.639997, 1)
+target_position = Vector2(-28.1252, 0)
+collision_mask = 128
+
+[node name="WaitHitBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaitHitBox"]
 scale = Vector2(-1.06923, 1.054)
 shape = SubResource("RectangleShape2D_l6wnq")
 
-[connection signal="area_entered" from="State Machine/Walk/HitBox" to="State Machine/Walk" method="GotHitOnWalk"]
-[connection signal="area_entered" from="State Machine/Wait/WaitHitBox" to="State Machine/Wait" method="GotHitOnWait"]
+[connection signal="area_entered" from="Top" to="State Machine/Walk" method="GotHit"]
+[connection signal="area_entered" from="WaitHitBox" to="State Machine/Wait" method="GotHitOnWait"]
