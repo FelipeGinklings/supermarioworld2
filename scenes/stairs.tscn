@@ -60,7 +60,7 @@ collision_mask = 1540
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fpun6")
 animation = &"idle"
-frame_progress = 0.92291
+frame_progress = 0.948476
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Head"]
 polygon = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
